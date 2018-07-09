@@ -1,0 +1,112 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.31"
+        //tag::buildscriptDependenciesWebdriverBinaries[]
+        classpath "gradle.plugin.com.energizedwork.webdriver-binaries:webdriver-binaries-gradle-plugin:1.4"
+        //end::buildscriptDependenciesWebdriverBinaries[]
+    }
+}
+
+version "0.1"
+group "example.micronaut"
+
+apply plugin:"io.spring.dependency-management"
+apply plugin:"com.github.johnrengelman.shadow"
+apply plugin:"application"
+apply plugin:"kotlin"
+//tag::applygroovy[]
+apply plugin:"groovy"
+//end::applygroovy[]
+apply plugin:"kotlin-kapt"
+//tag::applyPluginWebdriverBinaries[]
+apply plugin:"com.energizedwork.webdriver-binaries"
+//end::applyPluginWebdriverBinaries[]
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://jcenter.bintray.com" }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "io.micronaut:bom:$micronautVersion"
+    }
+}
+
+dependencies {
+    compile "io.micronaut:http-client"
+    compile "io.micronaut:http-server-netty"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.31"
+    compile "org.jetbrains.kotlin:kotlin-reflect:1.2.31"
+    compile "io.micronaut:runtime"
+    kapt "io.micronaut:inject-java"
+    kaptTest "io.micronaut:inject-java"
+    runtime "ch.qos.logback:logback-classic:1.2.3"
+
+    //tag::securitydependency[]
+    compile "io.micronaut:security-session"
+    //end::securitydependency[]
+
+    //tag::velocity[]
+    compile "org.apache.velocity:velocity-engine-core:2.0"
+    //end::velocity[]
+
+
+    //tag::spock[]
+    testCompile "org.codehaus.groovy:groovy-all:2.5.0"
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+    //end::spock[]
+
+    //tag::geb[]
+    testCompile "org.gebish:geb-spock:2.1"
+    testRuntime "org.seleniumhq.selenium:selenium-chrome-driver:3.6.0"
+    testRuntime "org.seleniumhq.selenium:selenium-firefox-driver:3.6.0"
+    testCompile "org.seleniumhq.selenium:selenium-support:3.6.0"
+    testCompile "org.seleniumhq.selenium:selenium-api:3.6.0"
+    //end::geb[]
+}
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1')
+
+mainClassName = "example.micronaut.Application"
+
+//tag::webdriverBinaries[]
+webdriverBinaries {
+    chromedriver '2.40'
+    geckodriver '0.21.0'
+}
+//end::webdriverBinaries[]
+
+//tag::taskWithTypeTest[]
+tasks.withType(Test) {
+    systemProperty "geb.env", System.getProperty('geb.env')
+    systemProperty "webdriver.chrome.driver", System.getProperty('webdriver.chrome.driver')
+    systemProperty "webdriver.gecko.driver", System.getProperty('webdriver.gecko.driver')
+}
+//end::taskWithTypeTest[]
+
+compileKotlin {
+	kotlinOptions {
+	    jvmTarget = '1.8' 
+	    //Will retain parameter names for Java reflection
+	    javaParameters = true 
+	}
+}
+
+compileTestKotlin {
+	kotlinOptions {
+	    jvmTarget = '1.8' 
+	    javaParameters = true 
+	}
+}
