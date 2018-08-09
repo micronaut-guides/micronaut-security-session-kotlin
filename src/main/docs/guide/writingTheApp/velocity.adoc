@@ -36,7 +36,7 @@ include::{sourceDir}/src/main/resources/templates/auth.vm[]
 
 To render those templates, create `VelocityService.kotlin`
 
-[source,java]
+[source,kotlin]
 .src/main/kotlin/example/micronaut/services/VelocityService.kt
 ----
 include::{sourceDir}/src/main/kotlin/example/micronaut/services/VelocityService.kt[]
