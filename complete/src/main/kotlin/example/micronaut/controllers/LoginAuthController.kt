@@ -1,11 +1,7 @@
 package example.micronaut.controllers
 
-
-import example.micronaut.services.VelocityService
-import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
-import io.micronaut.http.annotation.Produces
 import io.micronaut.security.Secured
 import io.micronaut.views.View
 import java.util.HashMap
