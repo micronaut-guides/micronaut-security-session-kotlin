@@ -51,6 +51,7 @@ dependencies {
     runtime "ch.qos.logback:logback-classic:1.2.3"
 
     //tag::securitydependency[]
+    compile "io.micronaut:views"
     compile "io.micronaut:security-session"
     //end::securitydependency[]
 
