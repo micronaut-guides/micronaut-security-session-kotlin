@@ -104,7 +104,7 @@ compileTestKotlin {
 
 //tag::webdriverBinaries[]
 webdriverBinaries {
-    chromedriver '2.40'
+    chromedriver '2.41'
     geckodriver '0.21.0'
 }
 //end::webdriverBinaries[]
