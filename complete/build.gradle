@@ -10,8 +10,6 @@ plugins {
     //end::buildscriptDependenciesWebdriverBinaries[]
 }
 
-
-
 version "0.1"
 group "example.micronaut"
 
