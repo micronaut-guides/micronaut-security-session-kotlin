@@ -1,5 +1,6 @@
 package example.micronaut.services
 
+import io.micronaut.http.HttpRequest
 import io.micronaut.security.authentication.AuthenticationFailed
 import io.micronaut.security.authentication.AuthenticationProvider
 import io.micronaut.security.authentication.AuthenticationRequest
@@ -12,7 +13,8 @@ import javax.inject.Singleton
 
 @Singleton // <1>
 class AuthenticationProviderUserPassword : AuthenticationProvider { // <2>
-    override fun authenticate(authenticationRequest: AuthenticationRequest<*, *>?): Publisher<AuthenticationResponse> {
+
+    override fun authenticate(httpRequest: HttpRequest<*>?, authenticationRequest: AuthenticationRequest<*, *>?): Publisher<AuthenticationResponse> {
         if (authenticationRequest != null && authenticationRequest.identity != null && authenticationRequest.secret != null) {
             if (authenticationRequest.identity == "sherlock" && authenticationRequest.secret == "password") {
                 return Flowable.just<AuthenticationResponse>(UserDetails(authenticationRequest.identity as String, ArrayList()))
