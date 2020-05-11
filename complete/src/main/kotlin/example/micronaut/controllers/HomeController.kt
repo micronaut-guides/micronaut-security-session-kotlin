@@ -3,11 +3,12 @@ package example.micronaut.controllers
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.security.annotation.Secured
+import io.micronaut.security.rules.SecurityRule
 import io.micronaut.views.View
 import java.security.Principal
 
-@Secured("isAnonymous()") // <1>
 @Controller("/") // <2>
+@Secured(SecurityRule.IS_ANONYMOUS) // <1>
 class HomeController {
 
     @Get("/") // <3>
