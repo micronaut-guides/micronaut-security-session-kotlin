@@ -1,4 +1,4 @@
-include::{commondir}/common-spockinkotlinapp.adoc[]
+We created the application with Spock as a test framework.
 
 include::{commondir}/common-geb.adoc[]
 

@@ -7,6 +7,6 @@ dependencies {
 ...
 ..
 .
-include::{sourceDir}/build.gradle[tag=securitydependency]
+include::{sourceDir}/build.gradle[tag=security]
 }
 ----

@@ -1,9 +1,9 @@
 Create a file named `HomeController` which resolves the base URL `/`:
 
 [source,kotlin]
-.src/main/kotlin/example/micronaut/controllers/HomeController.kt
+.src/main/kotlin/example/micronaut/HomeController.kt
 ----
-include::{sourceDir}/src/main/kotlin/example/micronaut/controllers/HomeController.kt[]
+include::{sourceDir}/src/main/kotlin/example/micronaut/HomeController.kt[]
 ----
 
 <1> Annotate with `io.micronaut.security.Secured` to configure security access. Use `isAnonymous()` expression to allow access to authenticated and unauthenticated users.
@@ -17,9 +17,9 @@ include::{sourceDir}/src/main/kotlin/example/micronaut/controllers/HomeControlle
 Next, create `LoginAuthController` which renders the login form.
 
 [source,kotlin]
-.src/main/kotlin/example/micronaut/controllers/LoginAuthController.kt
+.src/main/kotlin/example/micronaut/LoginAuthController.kt
 ----
-include::{sourceDir}/src/main/kotlin/example/micronaut/controllers/LoginAuthController.kt[]
+include::{sourceDir}/src/main/kotlin/example/micronaut/LoginAuthController.kt[]
 ----
 
 <1> Annotate with `io.micronaut.security.Secured` to configure security access. Use `isAnonymous()` expression for anonymous access.

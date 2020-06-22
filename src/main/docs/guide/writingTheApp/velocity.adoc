@@ -16,7 +16,7 @@ dependencies {
 ...
 ..
 .
-include::{sourceDir}/build.gradle[tag=velocity]
+include::{sourceDir}/build.gradle[tag=views]
 }
 ----
 
